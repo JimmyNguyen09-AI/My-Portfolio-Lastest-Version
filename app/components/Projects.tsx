@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-
+import { AnimatePresence, motion } from "framer-motion";
 const categories = ["All", "Computer Vision", "GenAI & FullStack"];
 
 const projects = [
@@ -85,6 +85,13 @@ export default function Projects() {
 
     return (
         <section id="projects" className="relative py-20 md:py-32 overflow-hidden">
+            <AnimatePresence >
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                >
             {/* Background effects */}
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(59,130,246,0.05),transparent_50%)]" />
@@ -256,7 +263,8 @@ export default function Projects() {
                 </div>
             </div>
 
-            
+            </motion.div>
+            </AnimatePresence>
         </section>
     );
 }

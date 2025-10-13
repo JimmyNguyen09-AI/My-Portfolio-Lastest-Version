@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-
+import { AnimatePresence, motion } from "framer-motion";
 export default function Contact() {
     const [formData, setFormData] = useState({
         name: '',
@@ -89,6 +89,13 @@ export default function Contact() {
 
     return (
         <section id="contact" className="relative py-20 md:py-32 overflow-hidden">
+            <AnimatePresence >
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                >
             {/* Background effects */}
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.08),transparent_50%)]" />
@@ -284,6 +291,8 @@ export default function Contact() {
                     </div>
                 </div>
             </div>
+            </motion.div>
+            </AnimatePresence>
         </section>
     );
 }

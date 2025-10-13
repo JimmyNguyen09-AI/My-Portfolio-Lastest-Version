@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-
+import { AnimatePresence, motion } from "framer-motion";
 export default function About() {
     const [activeTab, setActiveTab] = useState<'skills' | 'experience' | 'education'>('skills');
 
@@ -39,6 +39,13 @@ export default function About() {
 
     return (
         <section id="about" className="relative py-20 md:py-32 overflow-hidden">
+            <AnimatePresence >
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                >
             {/* Background effects */}
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.05),transparent_50%)]" />
@@ -256,6 +263,8 @@ export default function About() {
                     animation: fadeIn 0.5s ease-out;
                 }
             `}</style>
+            </motion.div>
+            </AnimatePresence>
         </section>
     );
 }

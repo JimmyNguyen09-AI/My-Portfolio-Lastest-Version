@@ -1,12 +1,21 @@
 "use client"
 import Image from "next/image";
 import TypingTitle from "./_components/Typing";
-
+import { AnimatePresence, motion } from "framer-motion";
 export default function Hero() {
     const words = ["GenAI Engineer", "AI Engineer", "Full Stack Web Developer", "Computer Vision Engineer"];
     
     return (
+        
         <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
+            
+            <AnimatePresence >
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                >
             {/* Animated gradient background */}
             <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
@@ -82,7 +91,7 @@ export default function Hero() {
                                 Tech Stack
                             </p>
                             <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-                                {["HTML5", "CSS", "JavaScript", "Node.js", "React", "Git", "GitHub"].map((tech) => (
+                                {["Python","Typescript","NodeJS","Pytorch","NEXT.JS","EXPRESS.JS","LangChain","OpenCV","Pydantic AI"].map((tech) => (
                                     <span 
                                         key={tech}
                                         className="px-4 py-2 text-sm font-medium text-white/70 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-300 cursor-default"
@@ -112,7 +121,7 @@ export default function Hero() {
                                 <div className="relative h-[340px] w-[340px] md:h-[420px] md:w-[420px] rounded-full overflow-hidden ring-2 ring-white/10 shadow-[0_0_80px_rgba(59,130,246,0.3)]">
                                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-emerald-500/20 mix-blend-overlay" />
                                     <Image
-                                        src="/avt.jpeg"
+                                        src="/avt2.jpg"
                                         alt="Jimmy Nguyen"
                                         fill
                                         sizes="(max-width: 768px) 340px, 420px"
@@ -157,6 +166,8 @@ export default function Hero() {
                     animation: float 3s ease-in-out infinite;
                 }
             `}</style>
+            </motion.div>
+            </AnimatePresence>
         </section>
     );
 }
