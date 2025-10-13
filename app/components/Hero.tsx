@@ -67,7 +67,7 @@ export default function Hero() {
                             </a>
                             
                             <a 
-                                href="/resume.pdf" 
+                                href="/JimmyNguyenProfessionalCV.pdf" 
                                 target="_blank" 
                                 rel="noreferrer"
                                 className="px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl font-semibold text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105"

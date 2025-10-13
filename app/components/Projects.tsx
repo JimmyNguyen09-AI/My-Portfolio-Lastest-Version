@@ -3,69 +3,48 @@
 import Image from "next/image";
 import { useState } from "react";
 
-const categories = ["All", "AI/ML", "Computer Vision", "GenAI & LLM", "Full Stack"];
+const categories = ["All", "Computer Vision", "GenAI & FullStack"];
 
 const projects = [
     {
         id: 1,
         title: "ZORA – AI Chat Platform",
         description: "Scalable AI chat system using microservices architecture with RAG for context-aware responses and real-time message streaming with secure JWT authentication.",
-        image: "/projects/zora.jpg",
-        category: "GenAI & LLM",
-        tags: ["FastAPI", "LangChain", "Mistral 7B", "Next.js", "Docker"],
+        image: "/jnzora.jpg",
+        category: "GenAI & FullStack",
+        tags: ["FastAPI", "LangChain", "Pixtral 12B", "Next.js", "Docker", "ExpressJS","NodeJS","PostgreSQL", "Vercel"],
         github: "https://github.com/JimmyNguyen09-AI",
         demo: "https://www.jnzora.com",
         featured: true
     },
     {
         id: 2,
-        title: "Vision Q&A – Visual Question Answering",
-        description: "Combines YOLO-based object detection with HuggingFace LLMs to answer questions about images with visual analysis and natural language understanding.",
-        image: "/projects/visionqa.jpg",
+        title: "Quick, Draw! – Finger Drawing Recognition",
+        description: "Recreated Google's Quick, Draw! game with real-time finger tracking via webcam. Implemented gesture recognition and digit classification using OpenCV and custom CNN.",
+        image: "/quickdraw.gif",
         category: "Computer Vision",
-        tags: ["Python", "YOLO", "HuggingFace", "Streamlit", "Docker"],
-        github: "https://github.com/JimmyNguyen09-AI/VisionQA",
-        demo: "https://github.com/JimmyNguyen09-AI/VisionQA",
+        tags: ["Python", "OpenCV", "CNN", "Computer Vision","Mediapipe"],
+        github: "https://github.com/JimmyNguyen09-AI/QuickDrawGoogle-CNN",
+        demo: "https://github.com/JimmyNguyen09-AI/QuickDrawGoogle-CNN",
         featured: true
     },
     {
         id: 3,
-        title: "Retrieval-Augmented AI Assistant",
-        description: "Intelligent assistant answering questions from uploaded documents using RAG and large language models. Designed for accuracy, scalability, and modularity.",
-        image: "/projects/rag-assistant.jpg",
-        category: "GenAI & LLM",
-        tags: ["LangChain", "OpenAI API", "FastAPI", "ChromaDB"],
-        github: "https://github.com/JimmyNguyen09-AI/AI-Assistant-RAG-LangChain",
-        demo: "https://github.com/JimmyNguyen09-AI/AI-Assistant-RAG-LangChain",
-        featured: true
-    },
-    {
-        id: 4,
         title: "Staff-Tracking YOLO",
         description: "Real-time staff detection and tracking in video streams using YOLOv5. Automatically marks seats as empty when staff leave and logs absence duration.",
-        image: "/projects/staff-tracking.jpg",
+        image: "/output.gif",
         category: "Computer Vision",
         tags: ["Python", "OpenCV", "YOLO", "Ultralytics"],
         github: "https://github.com/JimmyNguyen09-AI/Staff-Tracking",
         demo: "https://github.com/JimmyNguyen09-AI/Staff-Tracking",
-        featured: false
+        featured: true
     },
-    {
-        id: 5,
-        title: "Quick, Draw! – Finger Drawing Recognition",
-        description: "Recreated Google's Quick, Draw! game with real-time finger tracking via webcam. Implemented gesture recognition and digit classification using OpenCV and custom CNN.",
-        image: "/projects/quickdraw.jpg",
-        category: "Computer Vision",
-        tags: ["Python", "OpenCV", "CNN", "Computer Vision"],
-        github: "https://github.com/JimmyNguyen09-AI/QuickDrawGoogle-CNN",
-        demo: "https://github.com/JimmyNguyen09-AI/QuickDrawGoogle-CNN",
-        featured: false
-    },
+    
     {
         id: 6,
         title: "DCGAN – Face Image Generation",
         description: "Deep Convolutional GAN to synthesize realistic human faces from noise vectors. Focused on training stability, visual quality, and generator-discriminator balance.",
-        image: "/projects/dcgan.jpg",
+        image: "/face_gene.jpg",
         category: "AI/ML",
         tags: ["PyTorch", "DCGAN", "Deep Learning", "GANs"],
         github: "https://github.com/JimmyNguyen09-AI/DCGANs-FaceGenerate",
@@ -76,7 +55,7 @@ const projects = [
         id: 7,
         title: "Faster R-CNN – Object Detection",
         description: "Applied pretrained Faster R-CNN model to detect and classify objects using Pascal VOC dataset. Focused on evaluation, bounding box visualization, and dataset integration.",
-        image: "/projects/faster-rcnn.jpg",
+        image: "/fasterRCNN.jpg",
         category: "Computer Vision",
         tags: ["PyTorch", "Faster R-CNN", "Pascal VOC", "Object Detection"],
         github: "https://github.com/JimmyNguyen09-AI/FasterRCNN-VOC",
@@ -87,7 +66,7 @@ const projects = [
         id: 8,
         title: "Photomosaic Generator",
         description: "Tool to generate mosaic-style images and videos by matching tiles based on color similarity using image processing techniques and distance metrics.",
-        image: "/projects/photomosaic.jpg",
+        image: "/phomosaic.jpg",
         category: "Computer Vision",
         tags: ["Python", "OpenCV", "NumPy", "Image Processing"],
         github: "https://github.com/JimmyNguyen09-AI/Photomosaic-Generator",
@@ -277,18 +256,7 @@ export default function Projects() {
                 </div>
             </div>
 
-            <style jsx>{`
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-            `}</style>
+            
         </section>
     );
 }

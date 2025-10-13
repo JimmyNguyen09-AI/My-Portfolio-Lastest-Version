@@ -7,54 +7,42 @@ export default function About() {
     const [activeTab, setActiveTab] = useState<'skills' | 'experience' | 'education'>('skills');
 
     const skills = {
-        "AI & Machine Learning": ["TensorFlow", "PyTorch", "Computer Vision", "NLP", "GenAI", "LangChain"],
-        "Frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML5", "CSS3"],
+        "AI & Machine Learning": ["Pydantic AI", "PyTorch", "LangChain", "Scikit-Learn", "GenAI", "HuggingFace", "OpenAI"],
+        "Frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Streamlit", "HTML5", "CSS3"],
         "Backend": ["Node.js", "Python", "FastAPI", "Express", "REST APIs"],
-        "Tools & Others": ["Git", "GitHub", "Docker", "AWS", "Vercel", "MongoDB"]
+        "Tools & Others": ["Git", "GitHub", "Docker", "AWS", "Vercel", "PostgreSQL", "Linux"]
     };
 
     const experience = [
         {
-            period: "2023 - Present",
-            role: "AI Engineer",
-            company: "Tech Company",
+            period: "01/08/2024 - Present",
+            role: "AI Agent Engineer",
+            company: "GRCG - Global Remote Consulting Group",
             description: "Developing cutting-edge AI solutions and implementing machine learning models for production systems."
-        },
-        {
-            period: "2021 - 2023",
-            role: "Full Stack Developer",
-            company: "Digital Agency",
-            description: "Built responsive web applications and integrated AI features for client projects."
-        },
-        {
-            period: "2020 - 2021",
-            role: "Junior Developer",
-            company: "Startup Inc",
-            description: "Collaborated on developing web applications and learning modern development practices."
         }
     ];
 
     const education = [
         {
-            period: "2018 - 2022",
-            degree: "Bachelor of Computer Science",
-            institution: "University Name",
-            description: "Specialized in Artificial Intelligence and Software Engineering with honors."
+            period: "08/2022 - 08/2023",
+            degree: "Bachelor of Automotive Technology",
+            institution: "HUST - Hanoi University of Science and Technology",
+            logo: "/hust.png"
         },
         {
-            period: "2023",
-            degree: "AI Certification",
-            institution: "Online Platform",
-            description: "Advanced certification in Machine Learning and Deep Learning applications."
+            period: "11/2023 - Present",
+            degree: "Bachelor of Information Technology",
+            institution: "King's Own Institute",
+            logo: "/koi.jpg"
         }
     ];
 
     return (
         <section id="about" className="relative py-20 md:py-32 overflow-hidden">
             {/* Background effects */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(16,185,129,0.08),transparent_50%)]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.05),transparent_50%)]" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,rgba(16,185,129,0.05),transparent_50%)]" />
             </div>
 
             {/* Grid pattern */}
@@ -96,9 +84,9 @@ export default function About() {
                         {/* Stats */}
                         <div className="grid grid-cols-3 gap-4">
                             {[
-                                { number: "5+", label: "Years Experience" },
-                                { number: "50+", label: "Projects Done" },
-                                { number: "30+", label: "Happy Clients" }
+                                { number: "1+", label: "Years Experience" },
+                                { number: "8+", label: "Projects Done" },
+                                { number: "1", label: "Completed Internship" }
                             ].map((stat, index) => (
                                 <div 
                                     key={index}
@@ -207,9 +195,24 @@ export default function About() {
                                             >
                                                 <div className="absolute left-0 top-0 w-4 h-4 bg-blue-400 rounded-full -translate-x-[9px] ring-4 ring-slate-950" />
                                                 <p className="text-sm text-blue-400 font-medium mb-1">{edu.period}</p>
-                                                <h4 className="text-xl font-bold text-white mb-1">{edu.degree}</h4>
-                                                <p className="text-emerald-400 font-medium mb-2">{edu.institution}</p>
-                                                <p className="text-white/60 text-sm">{edu.description}</p>
+                                                
+                                                <div className="flex items-start gap-3 mb-2">
+                                                    {edu.logo && (
+                                                        <div className="relative w-12 h-12 flex-shrink-0 bg-white/5 rounded-lg p-2 border border-white/10">
+                                                            <Image
+                                                                src={edu.logo}
+                                                                alt={edu.institution}
+                                                                fill
+                                                                className="object-cover"
+                                                                sizes="18px"
+                                                            />
+                                                        </div>
+                                                    )}
+                                                    <div className="flex-1">
+                                                        <h4 className="text-xl font-bold text-white mb-1">{edu.degree}</h4>
+                                                        <p className="text-emerald-400 font-medium">{edu.institution}</p>
+                                                    </div>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
@@ -226,7 +229,7 @@ export default function About() {
                                 Let&apos;s Work Together
                             </a>
                             <a
-                                href="/resume.pdf"
+                                href="/JimmyNguyenProfessionalCV.pdf"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg font-semibold text-white hover:bg-white/10 transition-all duration-300"
