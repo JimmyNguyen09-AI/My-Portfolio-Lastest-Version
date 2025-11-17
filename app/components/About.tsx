@@ -79,7 +79,7 @@ export default function About() {
                             <div className="relative aspect-[4/5] max-w-md mx-auto rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 mix-blend-overlay" />
                                 <Image
-                                    src="/avt.jpeg"
+                                    src="/avt1.jpg"
                                     alt="Jimmy Nguyen"
                                     fill
                                     className="object-cover"
