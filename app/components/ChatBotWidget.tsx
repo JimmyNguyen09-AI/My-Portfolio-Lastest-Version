@@ -67,7 +67,7 @@ const FormattedMessage = ({ content }: { content: string }) => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-1 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
                 >
-                  <span> Visit Website</span>
+                  <span>Visit Website</span>
                   <ArrowRight className="w-3 h-3" />
                 </a>
               </div>
@@ -87,7 +87,7 @@ const FormattedMessage = ({ content }: { content: string }) => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center space-x-1 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
                 >
-                  <span> View on GitHub</span>
+                  <span>View on GitHub</span>
                   <ArrowRight className="w-3 h-3" />
                 </a>
               </div>
