@@ -4,6 +4,104 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
+// Component to format markdown-style messages
+const FormattedMessage = ({ content }: { content: string }) => {
+  const lines = content.split('\n');
+  
+  return (
+    <div className="space-y-3">
+      {lines.map((line, idx) => {
+        // Project title with number
+        if (line.match(/^\d+\.\s\*\*/)) {
+          const titleMatch = line.match(/^\d+\.\s\*\*(.+?)\*\*/);
+          const title = titleMatch ? titleMatch[1] : line;
+          return (
+            <div key={idx} className="mt-4 first:mt-0">
+              <div className="flex items-start space-x-2 mb-2">
+                <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                  {line.match(/^\d+/)?.[0]}
+                </div>
+                <h4 className="font-bold text-base text-gray-900 dark:text-white flex-1 leading-tight pt-0.5">
+                  {title}
+                </h4>
+              </div>
+            </div>
+          );
+        }
+        
+        // Description line
+        if (line.includes('- **Description:**')) {
+          const desc = line.replace('- **Description:**', '').trim();
+          return (
+            <div key={idx} className="pl-8">
+              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{desc}</p>
+            </div>
+          );
+        }
+        
+        // Tech stack / Technologies
+        if (line.includes('- **Tech stack:**') || line.includes('- **Technologies:**')) {
+          const tech = line.replace(/- \*\*(Tech stack|Technologies):\*\*/, '').trim();
+          return (
+            <div key={idx} className="pl-8">
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {tech.split(',').map((t, i) => (
+                  <span key={i} className="text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-md border border-blue-200 dark:border-blue-800">
+                    {t.trim()}
+                  </span>
+                ))}
+              </div>
+            </div>
+          );
+        }
+        
+        // Website link
+        if (line.includes('- **Website:**')) {
+          const urlMatch = line.match(/\[(.+?)\]\((.+?)\)/);
+          if (urlMatch) {
+            return (
+              <div key={idx} className="pl-8 mt-2">
+                <a
+                  href={urlMatch[2]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-1 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
+                >
+                  <span> Visit Website</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+            );
+          }
+        }
+        
+        // GitHub link
+        if (line.includes('- **GitHub:**')) {
+          const urlMatch = line.match(/\[(.+?)\]\((.+?)\)/);
+          if (urlMatch) {
+            return (
+              <div key={idx} className="pl-8 mt-2">
+                <a
+                  href={urlMatch[2]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center space-x-1 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
+                >
+                  <span> View on GitHub</span>
+                  <ArrowRight className="w-3 h-3" />
+                </a>
+              </div>
+            );
+          }
+        }
+        
+        // Empty lines or regular text
+        if (line.trim() === '') return null;
+        return <p key={idx} className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{line}</p>;
+      })}
+    </div>
+  );
+};
 
 const ChatbotWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -73,8 +171,6 @@ const ChatbotWidget = () => {
     }
   };
 
-
-
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
@@ -118,16 +214,16 @@ const ChatbotWidget = () => {
             <div className="flex items-center space-x-3 relative z-10">
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center shadow-lg transform transition-transform hover:scale-110">
                 <Image
-                                  src="/logo-JN.png"
-                                  alt="JN • AI Logo"
-                                  width={100}
-                                  height={100}
-                                  className="object-cover"
-                                  priority
-                                />
+                  src="/logo-JN.png"
+                  alt="JN • AI Logo"
+                  width={100}
+                  height={100}
+                  className="object-cover"
+                  priority
+                />
               </div>
               <div>
-                <h3 className="font-bold text-lg tracking-wide">Jimmy Nguyen&apos;AI Assistant</h3>
+                <h3 className="font-bold text-lg tracking-wide">Jimmy Nguyen&apos;s AI Assistant</h3>
                 <div className="flex items-center space-x-1">
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                   <p className="text-xs opacity-95">Online • Here to help</p>
@@ -157,11 +253,15 @@ const ChatbotWidget = () => {
                         : 'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700 rounded-bl-none'
                     }`}
                   >
-                    <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.content}</p>
+                    <div className="text-sm leading-relaxed">
+                      {msg.content.includes('**') ? (
+                        <FormattedMessage content={msg.content} />
+                      ) : (
+                        <p className="whitespace-pre-wrap">{msg.content}</p>
+                      )}
+                    </div>
                   </div>
                 </div>
-                
-
               </div>
             ))}
             
