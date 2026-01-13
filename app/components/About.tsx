@@ -7,7 +7,7 @@ export default function About() {
     const [activeTab, setActiveTab] = useState<'skills' | 'experience' | 'education'>('skills');
 
     const skills = {
-        "AI & Machine Learning": ["Pydantic AI", "PyTorch", "LangChain", "Scikit-Learn", "GenAI", "HuggingFace", "OpenAI"],
+        "AI & Machine Learning": ["Pydantic AI", "PyTorch", "LangChain","LangGraph", "Scikit-Learn", "GenAI", "HuggingFace", "OpenAI"],
         "Frontend": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Streamlit", "HTML5", "CSS3"],
         "Backend": ["Node.js", "Python", "FastAPI", "Express", "REST APIs"],
         "Tools & Others": ["Git", "GitHub", "Docker", "AWS", "Vercel", "PostgreSQL", "Linux"]

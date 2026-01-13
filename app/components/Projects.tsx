@@ -12,7 +12,7 @@ const projects = [
         description: "Scalable AI chat system using microservices architecture with RAG for context-aware responses and real-time message streaming with secure JWT authentication.",
         image: "/jnzora.jpg",
         category: "GenAI & FullStack",
-        tags: ["FastAPI", "LangChain", "Pixtral 12B", "Next.js", "Docker", "ExpressJS","NodeJS","PostgreSQL", "Vercel"],
+        tags: ["FastAPI", "LangChain", "MistralAI","LangGraph","Microservices Pattern","Firebase","JWT","MCP","RAG","LangSmith", "Next.js", "Docker", "ExpressJS","NodeJS","PostgreSQL", "Vercel"],
         github: "https://github.com/JimmyNguyen09-AI",
         demo: "https://www.jnzora.com",
         featured: true
@@ -41,7 +41,7 @@ const projects = [
     },
     
     {
-        id: 6,
+        id: 4,
         title: "DCGAN – Face Image Generation",
         description: "Deep Convolutional GAN to synthesize realistic human faces from noise vectors. Focused on training stability, visual quality, and generator-discriminator balance.",
         image: "/face_gene.jpg",
@@ -52,7 +52,7 @@ const projects = [
         featured: false
     },
     {
-        id: 7,
+        id: 5,
         title: "Faster R-CNN – Object Detection",
         description: "Applied pretrained Faster R-CNN model to detect and classify objects using Pascal VOC dataset. Focused on evaluation, bounding box visualization, and dataset integration.",
         image: "/fasterRCNN.jpg",
@@ -63,7 +63,7 @@ const projects = [
         featured: false
     },
     {
-        id: 8,
+        id: 6,
         title: "Photomosaic Generator",
         description: "Tool to generate mosaic-style images and videos by matching tiles based on color similarity using image processing techniques and distance metrics.",
         image: "/phomosaic.jpg",
@@ -72,6 +72,17 @@ const projects = [
         github: "https://github.com/JimmyNguyen09-AI/Photomosaic-Generator",
         demo: "https://github.com/JimmyNguyen09-AI/Photomosaic-Generator",
         featured: false
+    },
+    {
+        id: 7,
+        title: "Traffic-Light-Violation-Detection",
+        description: "This project is an end-to-end computer vision system that automatically detects vehicles violating red traffic lights, captures their license plates, and visualizes violations in a real-time web interface.",
+        image: "/red_light.jpg",
+        category: "Computer Vision",
+        tags: ["Python", "OpenCV", "NumPy", "YOLOv8","Docker","Roboflow","Streamlit"],
+        github: "https://github.com/JimmyNguyen09-AI/Traffic-Light-Violation-Detection-YOLO",
+        demo: "https://github.com/JimmyNguyen09-AI/Traffic-Light-Violation-Detection-YOLO",
+        featured: true
     }
 ];
 
