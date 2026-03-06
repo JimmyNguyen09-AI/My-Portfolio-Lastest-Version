@@ -4,103 +4,150 @@ import React, { useState, useRef, useEffect } from 'react';
 import { MessageCircle, X, Send, Loader2, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
+// Render inline markdown: bold, italic, code, links
+const renderInline = (text: string): React.ReactNode[] => {
+  const tokens: React.ReactNode[] = [];
+  // Combined regex for **bold**, *italic*, `code`, [link](url)
+  const pattern = /(\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`|\[([^\]]+)\]\(([^)]+)\))/g;
+  let last = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > last) {
+      tokens.push(text.slice(last, match.index));
+    }
+    if (match[2] !== undefined) {
+      tokens.push(<strong key={match.index} className="font-semibold text-gray-900 dark:text-white">{match[2]}</strong>);
+    } else if (match[3] !== undefined) {
+      tokens.push(<em key={match.index} className="italic">{match[3]}</em>);
+    } else if (match[4] !== undefined) {
+      tokens.push(
+        <code key={match.index} className="px-1.5 py-0.5 rounded text-xs font-mono bg-gray-100 dark:bg-gray-700 text-pink-600 dark:text-pink-400">
+          {match[4]}
+        </code>
+      );
+    } else if (match[5] !== undefined && match[6] !== undefined) {
+      tokens.push(
+        <a key={match.index} href={match[6]} target="_blank" rel="noopener noreferrer"
+          className="inline-flex items-center gap-0.5 text-blue-600 dark:text-blue-400 hover:underline font-medium">
+          {match[5]}<ArrowRight className="w-3 h-3" />
+        </a>
+      );
+    }
+    last = pattern.lastIndex;
+  }
+  if (last < text.length) tokens.push(text.slice(last));
+  return tokens;
+};
+
 // Component to format markdown-style messages
 const FormattedMessage = ({ content }: { content: string }) => {
   const lines = content.split('\n');
-  
-  return (
-    <div className="space-y-3">
-      {lines.map((line, idx) => {
-        // Project title with number
-        if (line.match(/^\d+\.\s\*\*/)) {
-          const titleMatch = line.match(/^\d+\.\s\*\*(.+?)\*\*/);
-          const title = titleMatch ? titleMatch[1] : line;
-          return (
-            <div key={idx} className="mt-4 first:mt-0">
-              <div className="flex items-start space-x-2 mb-2">
-                <div className="flex-shrink-0 w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                  {line.match(/^\d+/)?.[0]}
-                </div>
-                <h4 className="font-bold text-base text-gray-900 dark:text-white flex-1 leading-tight pt-0.5">
-                  {title}
-                </h4>
-              </div>
+  const result: React.ReactNode[] = [];
+  let i = 0;
+
+  while (i < lines.length) {
+    const line = lines[i];
+
+    // Skip empty lines
+    if (line.trim() === '') { i++; continue; }
+
+    // Heading ### / ## / #
+    const headingMatch = line.match(/^(#{1,3})\s+(.+)/);
+    if (headingMatch) {
+      const level = headingMatch[1].length;
+      const cls = level === 1
+        ? 'text-base font-bold text-gray-900 dark:text-white mt-3 mb-1'
+        : level === 2
+        ? 'text-sm font-bold text-gray-900 dark:text-white mt-3 mb-1'
+        : 'text-sm font-semibold text-gray-800 dark:text-gray-100 mt-2 mb-0.5';
+      result.push(<p key={i} className={cls}>{renderInline(headingMatch[2])}</p>);
+      i++; continue;
+    }
+
+    // Numbered list — collect consecutive items
+    if (line.match(/^\d+\.\s/)) {
+      const items: string[] = [];
+      while (i < lines.length && lines[i].match(/^\d+\.\s/)) {
+        items.push(lines[i].replace(/^\d+\.\s/, ''));
+        i++;
+      }
+      result.push(
+        <ol key={`ol-${i}`} className="list-none space-y-1.5 my-1">
+          {items.map((item, idx) => (
+            <li key={idx} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+              <span className="flex-shrink-0 w-3 h-3 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white text-xs font-bold flex items-center justify-center mt-0.5">
+                
+              </span>
+              <span className="flex-1 leading-relaxed">{renderInline(item)}</span>
+            </li>
+          ))}
+        </ol>
+      );
+      continue;
+    }
+
+    // Bullet list — collect consecutive items
+    if (line.match(/^[-*]\s/)) {
+      const items: string[] = [];
+      while (i < lines.length && lines[i].match(/^[-*]\s/)) {
+        items.push(lines[i].replace(/^[-*]\s/, ''));
+        i++;
+      }
+      result.push(
+        <ul key={`ul-${i}`} className="space-y-1 my-1">
+          {items.map((item, idx) => (
+            <li key={idx} className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+              <span className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-blue-500 mt-2" />
+              <span className="flex-1 leading-relaxed">{renderInline(item)}</span>
+            </li>
+          ))}
+        </ul>
+      );
+      continue;
+    }
+
+    // Inline code block (``` fenced)
+    if (line.startsWith('```')) {
+      const lang = line.slice(3).trim();
+      const codeLines: string[] = [];
+      i++;
+      while (i < lines.length && !lines[i].startsWith('```')) {
+        codeLines.push(lines[i]);
+        i++;
+      }
+      i++; // skip closing ```
+      result.push(
+        <div key={`code-${i}`} className="my-2 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-600">
+          {lang && (
+            <div className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-xs text-gray-500 dark:text-gray-400 font-mono">
+              {lang}
             </div>
-          );
-        }
-        
-        // Description line
-        if (line.includes('- **Description:**')) {
-          const desc = line.replace('- **Description:**', '').trim();
-          return (
-            <div key={idx} className="pl-8">
-              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{desc}</p>
-            </div>
-          );
-        }
-        
-        // Tech stack / Technologies
-        if (line.includes('- **Tech stack:**') || line.includes('- **Technologies:**')) {
-          const tech = line.replace(/- \*\*(Tech stack|Technologies):\*\*/, '').trim();
-          return (
-            <div key={idx} className="pl-8">
-              <div className="flex flex-wrap gap-1.5 mt-2">
-                {tech.split(',').map((t, i) => (
-                  <span key={i} className="text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-md border border-blue-200 dark:border-blue-800">
-                    {t.trim()}
-                  </span>
-                ))}
-              </div>
-            </div>
-          );
-        }
-        
-        // Website link
-        if (line.includes('- **Website:**')) {
-          const urlMatch = line.match(/\[(.+?)\]\((.+?)\)/);
-          if (urlMatch) {
-            return (
-              <div key={idx} className="pl-8 mt-2">
-                <a
-                  href={urlMatch[2]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-1 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
-                >
-                  <span>Visit Website</span>
-                  <ArrowRight className="w-3 h-3" />
-                </a>
-              </div>
-            );
-          }
-        }
-        
-        // GitHub link
-        if (line.includes('- **GitHub:**')) {
-          const urlMatch = line.match(/\[(.+?)\]\((.+?)\)/);
-          if (urlMatch) {
-            return (
-              <div key={idx} className="pl-8 mt-2">
-                <a
-                  href={urlMatch[2]}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-1 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors"
-                >
-                  <span>View on GitHub</span>
-                  <ArrowRight className="w-3 h-3" />
-                </a>
-              </div>
-            );
-          }
-        }
-        
-        // Empty lines or regular text
-        if (line.trim() === '') return null;
-        return <p key={idx} className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{line}</p>;
-      })}
-    </div>
-  );
+          )}
+          <pre className="px-3 py-2 bg-gray-100 dark:bg-gray-800 text-xs font-mono text-gray-800 dark:text-gray-200 overflow-x-auto whitespace-pre-wrap">
+            {codeLines.join('\n')}
+          </pre>
+        </div>
+      );
+      continue;
+    }
+
+    // Horizontal rule
+    if (line.match(/^---+$/)) {
+      result.push(<hr key={i} className="my-2 border-gray-200 dark:border-gray-600" />);
+      i++; continue;
+    }
+
+    // Regular paragraph
+    result.push(
+      <p key={i} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+        {renderInline(line)}
+      </p>
+    );
+    i++;
+  }
+
+  return <div className="space-y-1.5">{result}</div>;
 };
 
 const ChatbotWidget = () => {
@@ -254,7 +301,7 @@ const ChatbotWidget = () => {
                     }`}
                   >
                     <div className="text-sm leading-relaxed">
-                      {msg.content.includes('**') ? (
+                      {msg.role === 'assistant' ? (
                         <FormattedMessage content={msg.content} />
                       ) : (
                         <p className="whitespace-pre-wrap">{msg.content}</p>

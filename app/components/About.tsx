@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 export default function About() {
     const [activeTab, setActiveTab] = useState<'skills' | 'experience' | 'education'>('skills');
 
@@ -39,12 +39,11 @@ export default function About() {
 
     return (
         <section id="about" className="relative py-20 md:py-32 overflow-hidden">
-            <AnimatePresence >
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+            <motion.div
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    viewport={{ once: true, amount: 0.15 }}
                 >
             {/* Background effects */}
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
@@ -248,23 +247,142 @@ export default function About() {
                 </div>
             </div>
 
+            {/* Tech Stack Marquee Strip */}
+            <div className="mt-20 relative overflow-hidden">
+                {/* Fade edges */}
+                <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-slate-950 to-transparent pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-slate-950 to-transparent pointer-events-none" />
+
+                {/* Row 1 — left to right */}
+                <div className="flex mb-4 overflow-hidden">
+                    <div className="flex gap-4 animate-marquee-ltr">
+                        {[
+                            { label: "PyTorch", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
+                            { label: "LangChain", img: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4" },
+                            { label: "HuggingFace", img: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
+                            { label: "OpenAI", img: "https://cdn.worldvectorlogo.com/logos/openai-2.svg" },
+                            { label: "Scikit-Learn", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" },
+                            { label: "Next.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+                            { label: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                            { label: "TypeScript", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+                            { label: "Tailwind CSS", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+                            { label: "FastAPI", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+                            { label: "Node.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+                            { label: "Express", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+                            { label: "OpenCV", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" },
+                            { label: "Python", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+                            { label: "Streamlit", img: "https://streamlit.io/images/brand/streamlit-mark-color.svg" },
+                            { label: "Firebase", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+                            // duplicate for seamless loop
+                            { label: "PyTorch", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
+                            { label: "LangChain", img: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4" },
+                            { label: "HuggingFace", img: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
+                            { label: "OpenAI", img: "https://cdn.worldvectorlogo.com/logos/openai-2.svg" },
+                            { label: "Scikit-Learn", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" },
+                            { label: "Next.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+                            { label: "React", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+                            { label: "TypeScript", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+                            { label: "Tailwind CSS", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+                            { label: "FastAPI", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
+                            { label: "Node.js", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+                            { label: "Express", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
+                            { label: "OpenCV", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" },
+                            { label: "Python", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+                            { label: "Streamlit", img: "https://streamlit.io/images/brand/streamlit-mark-color.svg" },
+                            { label: "Firebase", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
+                        ].map((tech, i) => (
+                            <div key={i} className="inline-flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-2xl hover:border-blue-400/40 hover:bg-blue-500/10 transition-all duration-300 cursor-default select-none shrink-0 group">
+                                <img
+                                    src={tech.img}
+                                    alt={tech.label}
+                                    className="w-6 h-6 object-contain flex-shrink-0"
+                                    style={{ filter: (tech.label === "Next.js" || tech.label === "Express" || tech.label === "OpenAI") ? "invert(1)" : "none" }}
+                                />
+                                <span className="text-sm font-medium text-white/70 group-hover:text-white transition-colors whitespace-nowrap">{tech.label}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Row 2 — right to left */}
+                <div className="flex overflow-hidden">
+                    <div className="flex gap-4 animate-marquee-rtl">
+                        {[
+                            { label: "Docker", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+                            { label: "PostgreSQL", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+                            { label: "AWS", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+                            { label: "Vercel", img: "https://assets.vercel.com/image/upload/front/favicon/vercel/57x57.png" },
+                            { label: "Git", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+                            { label: "GitHub", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+                            { label: "Linux", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+                            { label: "Redis", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
+                            { label: "HTML5", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+                            { label: "CSS3", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+                            { label: "VS Code", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+                            { label: "Jupyter", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" },
+                            { label: "Mistral AI", img: "https://avatars.githubusercontent.com/u/132372032?s=200&v=4" },
+                            { label: "LangSmith", img: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4" },
+                            { label: "Pydantic", img: "https://docs.pydantic.dev/latest/logo-white.svg" },
+                            { label: "Vercel", img: "https://assets.vercel.com/image/upload/front/favicon/vercel/57x57.png" },
+                            // duplicate
+                            { label: "Docker", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+                            { label: "PostgreSQL", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+                            { label: "AWS", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+                            { label: "Vercel", img: "https://assets.vercel.com/image/upload/front/favicon/vercel/57x57.png" },
+                            { label: "Git", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
+                            { label: "GitHub", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
+                            { label: "Linux", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+                            { label: "Redis", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
+                            { label: "HTML5", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+                            { label: "CSS3", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+                            { label: "VS Code", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+                            { label: "Jupyter", img: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" },
+                            { label: "Mistral AI", img: "https://avatars.githubusercontent.com/u/132372032?s=200&v=4" },
+                            { label: "LangSmith", img: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4" },
+                            { label: "Pydantic", img: "https://docs.pydantic.dev/latest/logo-white.svg" },
+                            { label: "Vercel", img: "https://assets.vercel.com/image/upload/front/favicon/vercel/57x57.png" },
+                        ].map((tech, i) => (
+                            <div key={i} className="inline-flex items-center gap-3 px-5 py-3 bg-white/5 border border-white/10 rounded-2xl hover:border-emerald-400/40 hover:bg-emerald-500/10 transition-all duration-300 cursor-default select-none shrink-0 group">
+                                <img
+                                    src={tech.img}
+                                    alt={tech.label}
+                                    className="w-6 h-6 object-contain flex-shrink-0"
+                                    style={{ filter: (tech.label === "GitHub" || tech.label === "AWS" || tech.label === "Pydantic") ? "invert(1)" : "none" }}
+                                />
+                                <span className="text-sm font-medium text-white/70 group-hover:text-white transition-colors whitespace-nowrap">{tech.label}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
             <style jsx>{`
                 @keyframes fadeIn {
-                    from {
-                        opacity: 0;
-                        transform: translateY(10px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
-                .animate-fadeIn {
-                    animation: fadeIn 0.5s ease-out;
+                .animate-fadeIn { animation: fadeIn 0.5s ease-out; }
+
+                @keyframes marquee-ltr {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                @keyframes marquee-rtl {
+                    0% { transform: translateX(-50%); }
+                    100% { transform: translateX(0); }
+                }
+                .animate-marquee-ltr {
+                    animation: marquee-ltr 35s linear infinite;
+                }
+                .animate-marquee-rtl {
+                    animation: marquee-rtl 28s linear infinite;
+                }
+                .animate-marquee-ltr:hover,
+                .animate-marquee-rtl:hover {
+                    animation-play-state: paused;
                 }
             `}</style>
             </motion.div>
-            </AnimatePresence>
         </section>
     );
 }

@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import TypingTitle from "./_components/Typing";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 export default function Hero() {
     const words = ["GenAI Engineer", "AI Engineer", "Full Stack Web Developer", "Computer Vision Engineer"];
     
@@ -9,12 +9,10 @@ export default function Hero() {
         
         <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
             
-            <AnimatePresence >
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: false, amount: 0.2 }}
+                    <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
             {/* Animated gradient background */}
             <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950">
@@ -167,7 +165,6 @@ export default function Hero() {
                 }
             `}</style>
             </motion.div>
-            </AnimatePresence>
         </section>
     );
 }
