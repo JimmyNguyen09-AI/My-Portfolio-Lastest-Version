@@ -3,7 +3,7 @@ import Image from "next/image";
 import TypingTitle from "./_components/Typing";
 import { motion } from "framer-motion";
 export default function Hero() {
-    const words = ["GenAI Engineer", "AI Engineer", "Full Stack Web Developer", "Computer Vision Engineer"];
+    const words = ["GenAI Engineer","AI Agent Developer", "AI Engineer", "Full Stack Software Engineer", "Computer Vision Engineer"];
     
     return (
         
