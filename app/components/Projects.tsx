@@ -19,6 +19,17 @@ const projects = [
     },
     {
         id: 2,
+        title: "SKILLEXA – AI-Powered Coding Learning Platform ",
+        description: "An online programming learning platform for developers using a microservices architecture separating backend and AI services ",
+        image: "/skillexa.jpg",
+        category: "GenAI & FullStack",
+        tags: ["FastAPI", "LangChain", "MistralAI","LangGraph","Microservices Pattern","Firebase","JWT","MCP","RAG","LangSmith", "React.js", "Docker", "ASP .NET","PostgreSQL", "Vercel"],
+        github: "https://github.com/JimmyNguyen09-AI",
+        demo: "https://www.skillexa.site",
+        featured: true
+    },
+    {
+        id: 3,
         title: "Quick, Draw! – Finger Drawing Recognition",
         description: "Recreated Google's Quick, Draw! game with real-time finger tracking via webcam. Implemented gesture recognition and digit classification using OpenCV and custom CNN.",
         image: "/quickdraw.gif",
@@ -29,7 +40,7 @@ const projects = [
         featured: true
     },
     {
-        id: 3,
+        id: 4,
         title: "Staff-Tracking YOLO",
         description: "Real-time staff detection and tracking in video streams using YOLOv5. Automatically marks seats as empty when staff leave and logs absence duration.",
         image: "/output.gif",
@@ -41,7 +52,7 @@ const projects = [
     },
     
     {
-        id: 4,
+        id: 5,
         title: "DCGAN – Face Image Generation",
         description: "Deep Convolutional GAN to synthesize realistic human faces from noise vectors. Focused on training stability, visual quality, and generator-discriminator balance.",
         image: "/face_gene.jpg",
@@ -52,7 +63,7 @@ const projects = [
         featured: false
     },
     {
-        id: 5,
+        id: 6,
         title: "Faster R-CNN – Object Detection",
         description: "Applied pretrained Faster R-CNN model to detect and classify objects using Pascal VOC dataset. Focused on evaluation, bounding box visualization, and dataset integration.",
         image: "/fasterRCNN.jpg",
@@ -63,7 +74,7 @@ const projects = [
         featured: false
     },
     {
-        id: 6,
+        id: 7,
         title: "Photomosaic Generator",
         description: "Tool to generate mosaic-style images and videos by matching tiles based on color similarity using image processing techniques and distance metrics.",
         image: "/phomosaic.jpg",
@@ -74,7 +85,7 @@ const projects = [
         featured: false
     },
     {
-        id: 7,
+        id: 8,
         title: "Traffic-Light-Violation-Detection",
         description: "This project is an end-to-end computer vision system that automatically detects vehicles violating red traffic lights, captures their license plates, and visualizes violations in a real-time web interface.",
         image: "/red_light.jpg",
