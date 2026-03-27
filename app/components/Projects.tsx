@@ -23,7 +23,7 @@ const projects = [
         description: "An online programming learning platform for developers using a microservices architecture separating backend and AI services ",
         image: "/skillexa.jpg",
         category: "GenAI & FullStack",
-        tags: ["FastAPI", "LangChain", "MistralAI","LangGraph","Microservices Pattern","Firebase","JWT","MCP","RAG","LangSmith", "React.js", "Docker", "ASP .NET","PostgreSQL", "Vercel"],
+        tags: ["FastAPI", "LangChain", "MistralAI","LangGraph","Microservices Pattern","JWT","RAG","LangSmith", "React.js", "Docker", "ASP .NET","PostgreSQL", "Vercel"],
         github: "https://github.com/JimmyNguyen09-AI",
         demo: "https://www.skillexa.site",
         featured: true
