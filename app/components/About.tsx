@@ -200,7 +200,7 @@ export default function About() {
                 <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
               </a>
               <a
-                href="/JimmyNguyenProfessionalCV.pdf"
+                href="/AI ML Engineer - Jimmy Nguyen.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="cyber-button-secondary"
