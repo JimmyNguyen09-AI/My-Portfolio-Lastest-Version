@@ -47,8 +47,8 @@ export default function Contact() {
     {
       icon: MapPin,
       title: "Location",
-      value: "Hurstville NSW, Australia",
-      link: "https://www.google.com/maps/place/Hurstville+NSW+2220",
+      value: "Allawah NSW, Australia",
+      link: "https://www.google.com/maps/place/Allawah+NSW+2218",
     },
   ];
 
