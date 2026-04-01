@@ -19,8 +19,8 @@ const skills = {
     "HuggingFace",
     "OpenAI",
   ],
-  Frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Streamlit", "HTML5", "CSS3"],
-  Backend: ["Node.js", "Python", "FastAPI", "Express", "REST APIs"],
+  Frontend: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "Streamlit", "HTML5", "CSS3"],
+  Backend: ["Node.js", "Python", "FastAPI", "Express","ASP .NET", "REST APIs"],
   "Tools & Others": ["Git", "GitHub", "Docker", "AWS", "Vercel", "PostgreSQL", "Linux"],
 };
 
