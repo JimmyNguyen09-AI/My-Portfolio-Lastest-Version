@@ -365,14 +365,14 @@ const ChatbotWidget = () => {
                   onKeyDown={handleKeyDown}
                   placeholder="Type your message..."
                   rows={1}
-                  className="cyber-textarea min-h-[3.25rem] resize-none py-3"
+                  className="cyber-textarea min-h-[2.5rem] resize-none py-4"
                   disabled={isLoading}
                 />
               </div>
               <button
                 onClick={handleSendMessage}
                 disabled={!input.trim() || isLoading}
-                className="cyber-button cyber-button-glitch h-[3.25rem] w-[3.25rem] shrink-0 px-0 disabled:cursor-not-allowed disabled:opacity-60"
+                className="cyber-button cyber-button-glitch h-[2.5rem] w-[2.5rem] shrink-0 px-0 disabled:cursor-not-allowed disabled:opacity-60"
                 aria-label="Send message"
               >
                 <Send className="h-4 w-4" strokeWidth={1.5} />
