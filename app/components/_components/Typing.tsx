@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { Typewriter } from 'react-simple-typewriter';
+import { Typewriter } from "react-simple-typewriter";
 
 interface TypingWord {
   words: string[];
@@ -15,9 +15,9 @@ export default function TypingTitle({ words, typingChar }: TypingWord) {
         loop={0}
         cursor
         cursorStyle={typingChar}
-        typeSpeed={110}
-        deleteSpeed={70}
-        delaySpeed={240}
+        typeSpeed={100}
+        deleteSpeed={60}
+        delaySpeed={300}
       />
     </span>
   );

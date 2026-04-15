@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Github, Linkedin, Mail, MapPin, Phone, Send, Signal } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -11,53 +11,45 @@ export default function Contact() {
     subject: "",
     message: "",
   });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((previous) => ({
-      ...previous,
-      [event.target.name]: event.target.value,
-    }));
+    setFormData((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    setStatus('sending');
-
+    setStatus("sending");
     setTimeout(() => {
-      setStatus('success');
+      setStatus("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setStatus('idle'), 3000);
+      setTimeout(() => setStatus("idle"), 3500);
     }, 1500);
   };
 
   const contactInfo = [
     {
       icon: Mail,
-      title: "Email",
+      label: "Email",
       value: "ng.trungthanh04@gmail.com",
-      link: "mailto:ng.trungthanh04@gmail.com",
+      href: "mailto:ng.trungthanh04@gmail.com",
     },
     {
       icon: Phone,
-      title: "Phone",
+      label: "Phone",
       value: "+61 432 047 700",
-      link: "tel:+61432047700",
+      href: "tel:+61432047700",
     },
     {
       icon: MapPin,
-      title: "Location",
+      label: "Location",
       value: "Allawah NSW, Australia",
-      link: "https://www.google.com/maps/place/Allawah+NSW+2218",
+      href: "https://www.google.com/maps/place/Allawah+NSW+2218",
     },
   ];
 
   const socialLinks = [
-    {
-      name: "GitHub",
-      icon: Github,
-      url: "https://github.com/JimmyNguyen09-AI",
-    },
+    { name: "GitHub", icon: Github, url: "https://github.com/JimmyNguyen09-AI" },
     {
       name: "LinkedIn",
       icon: Linkedin,
@@ -66,118 +58,109 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="cyber-section overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 cyber-grid opacity-45"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_24%,rgb(0_255_136_/_0.12),transparent_26%),radial-gradient(circle_at_82%_72%,rgb(0_212_255_/_0.12),transparent_28%)]"
-      />
-
+    <section id="contact" className="overflow-hidden bg-[#F9F8F6]">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
-        viewport={{ once: true, amount: 0.15 }}
-        className="cyber-shell relative z-10 space-y-12"
+        transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+        viewport={{ once: true, amount: 0.12 }}
+        className="cyber-shell relative z-10 py-24 space-y-16 lg:py-32"
       >
-        <div className="max-w-3xl space-y-5">
-          <span className="cyber-kicker">
-            <Signal className="h-4 w-4" strokeWidth={1.5} />
-            Open Communication
-          </span>
-          <h2 className="cyber-heading text-[clamp(2.5rem,7vw,4.8rem)] text-white">
-            Let&apos;s Work
-            <br />
-            <span className="text-[var(--accent-secondary)]">Together</span>
+        {/* ── Section Header ──────────────────────────────────────── */}
+        <div className="max-w-2xl space-y-6">
+          <div className="flex items-center gap-4">
+            <span className="h-px w-8 bg-[#D4AF37]" />
+            <span className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.3em] text-[#6C6863]">
+              Open Communication
+            </span>
+          </div>
+          <h2 className="font-[var(--font-playfair)] text-[clamp(2.8rem,6vw,4.5rem)] font-normal leading-[0.92] text-[#1A1A1A]">
+            Let&apos;s Work{" "}
+            <em className="not-italic text-[#D4AF37]">Together</em>
           </h2>
-          <p className="max-w-2xl text-base leading-8 text-white/68 sm:text-lg">
-            Have a project in mind or want to discuss opportunities? This section keeps the same
-            contact pathways, but now feels like sending a message through a secured terminal.
+          <p className="font-[var(--font-inter)] text-base leading-relaxed text-[#6C6863]">
+            Have a project in mind or want to discuss opportunities? I&apos;m available for
+            freelance projects and full-time roles in AI/ML and Software Development.
           </p>
         </div>
 
-        <div className="grid gap-8 xl:grid-cols-[0.78fr_1.22fr]">
-          <div className="space-y-6">
-            <div className="cyber-terminal">
-              <div className="cyber-terminal-header">
-                <div className="cyber-terminal-dots">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <p className="cyber-label text-[10px] text-white/42">contact://access-points</p>
-              </div>
+        {/* ── Two-Column Layout ───────────────────────────────────── */}
+        <div className="grid gap-16 xl:grid-cols-[0.75fr_1.25fr] xl:gap-24">
 
-              <div className="space-y-4 px-5 py-5">
-                {contactInfo.map((info) => {
-                  const Icon = info.icon;
-
-                  return (
-                    <a
-                      key={info.title}
-                      href={info.link}
-                      target={info.link.startsWith("http") ? "_blank" : undefined}
-                      rel={info.link.startsWith("http") ? "noreferrer" : undefined}
-                      className="cyber-panel cyber-panel-hover flex items-start gap-4 p-4"
-                    >
-                      <div className="cyber-icon-box shrink-0">
-                        <Icon className="h-5 w-5" strokeWidth={1.5} />
-                      </div>
-                      <div className="space-y-1">
-                        <p className="cyber-label text-[10px] text-white/42">{info.title}</p>
-                        <p className="text-sm leading-6 text-white/78">{info.value}</p>
-                      </div>
-                    </a>
-                  );
-                })}
-              </div>
+          {/* ── Left: Contact Info ──────────────────────────────── */}
+          <div className="space-y-10">
+            {/* Contact links */}
+            <div className="space-y-0">
+              {contactInfo.map((info) => {
+                const Icon = info.icon;
+                return (
+                  <a
+                    key={info.label}
+                    href={info.href}
+                    target={info.href.startsWith("http") ? "_blank" : undefined}
+                    rel={info.href.startsWith("http") ? "noreferrer" : undefined}
+                    className="group flex items-start gap-4 border-t border-[#1A1A1A]/10 py-5 transition-colors duration-500 last:border-b hover:border-[#D4AF37]/30"
+                  >
+                    <div className="mt-0.5 shrink-0 text-[#6C6863] transition-colors duration-500 group-hover:text-[#D4AF37]">
+                      <Icon className="h-4 w-4" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <p className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#6C6863]">
+                        {info.label}
+                      </p>
+                      <p className="mt-1 font-[var(--font-inter)] text-sm text-[#1A1A1A] transition-colors duration-500 group-hover:text-[#D4AF37]">
+                        {info.value}
+                      </p>
+                    </div>
+                  </a>
+                );
+              })}
             </div>
 
-            <div className="cyber-panel p-5">
-              <p className="cyber-label text-xs text-[var(--accent)]">Availability</p>
-              <p className="mt-3 text-sm leading-7 text-white/70">
-                Currently accepting freelance projects and full-time opportunities in AI/ML and
-                Software Development.
-              </p>
-              <div className="mt-5 flex flex-wrap gap-3">
-                {socialLinks.map((social) => {
-                  const Icon = social.icon;
-
-                  return (
-                    <a
-                      key={social.name}
-                      href={social.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="cyber-button-ghost"
-                      aria-label={social.name}
-                    >
-                      <Icon className="h-4 w-4" strokeWidth={1.5} />
-                      {social.name}
-                    </a>
-                  );
-                })}
+            {/* Availability */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <span className="h-2 w-2 rounded-full bg-[#D4AF37]" />
+                <span className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#D4AF37]">
+                  Currently Available
+                </span>
               </div>
+              <p className="font-[var(--font-inter)] text-sm leading-relaxed text-[#6C6863]">
+                Accepting freelance projects and full-time opportunities in AI/ML and Software
+                Development.
+              </p>
+            </div>
+
+            {/* Social links */}
+            <div className="flex flex-wrap gap-3">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cyber-button-ghost inline-flex items-center gap-2"
+                  >
+                    <Icon className="h-3.5 w-3.5" strokeWidth={1.5} />
+                    {social.name}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          <div className="cyber-terminal">
-            <div className="cyber-terminal-header">
-              <div className="cyber-terminal-dots">
-                <span />
-                <span />
-                <span />
-              </div>
-              <p className="cyber-label text-[10px] text-white/42">transmit://secure-form</p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6 px-5 py-6 sm:px-7">
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="cyber-label text-[10px] text-white/50">
+          {/* ── Right: Contact Form ─────────────────────────────── */}
+          <div>
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Name + Email row */}
+              <div className="grid gap-8 md:grid-cols-2">
+                <div className="space-y-1">
+                  <label
+                    htmlFor="name"
+                    className="block font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#6C6863]"
+                  >
                     Your Name *
                   </label>
                   <div className="cyber-field">
@@ -188,14 +171,17 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="cyber-input"
-                      placeholder="Enter your name here"
+                      className="cyber-input font-[var(--font-inter)] text-sm"
+                      placeholder="Enter your name"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="email" className="cyber-label text-[10px] text-white/50">
+                <div className="space-y-1">
+                  <label
+                    htmlFor="email"
+                    className="block font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#6C6863]"
+                  >
                     Your Email *
                   </label>
                   <div className="cyber-field">
@@ -206,15 +192,19 @@ export default function Contact() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="cyber-input"
-                      placeholder="Enter your email here"
+                      className="cyber-input font-[var(--font-inter)] text-sm"
+                      placeholder="Enter your email"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="subject" className="cyber-label text-[10px] text-white/50">
+              {/* Subject */}
+              <div className="space-y-1">
+                <label
+                  htmlFor="subject"
+                  className="block font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#6C6863]"
+                >
                   Subject *
                 </label>
                 <div className="cyber-field">
@@ -225,14 +215,18 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="cyber-input"
+                    className="cyber-input font-[var(--font-inter)] text-sm"
                     placeholder="Project Inquiry"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="message" className="cyber-label text-[10px] text-white/50">
+              {/* Message */}
+              <div className="space-y-1">
+                <label
+                  htmlFor="message"
+                  className="block font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#6C6863]"
+                >
                   Message *
                 </label>
                 <div className="cyber-field cyber-field--textarea">
@@ -243,26 +237,34 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="cyber-textarea"
+                    className="cyber-textarea font-[var(--font-inter)] text-sm"
                     placeholder="Tell me about your project..."
                   />
                 </div>
               </div>
 
+              {/* Submit */}
               <button
                 type="submit"
-                disabled={status === 'sending'}
-                className="cyber-button cyber-button-glitch w-full disabled:cursor-not-allowed disabled:opacity-60"
+                disabled={status === "sending"}
+                className="cyber-button w-full disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {status === 'sending' && "Sending..."}
-                {status === 'success' && "Message Sent!"}
-                {status === 'idle' && "Send Message"}
-                <Send className="h-4 w-4" strokeWidth={1.5} />
+                <span>
+                  {status === "sending" && "Sending..."}
+                  {status === "success" && "Message Sent!"}
+                  {status === "idle" && "Send Message"}
+                </span>
+                {status === "idle" && (
+                  <Send className="h-3.5 w-3.5" strokeWidth={1.5} />
+                )}
               </button>
 
-              {status === 'success' && (
-                <div className="cyber-cut-sm border border-[rgba(0,255,136,0.35)] bg-[rgba(0,255,136,0.08)] px-4 py-4 text-sm text-[var(--accent)]">
-                  Thank you! I&apos;ll get back to you as soon as possible.
+              {/* Success message */}
+              {status === "success" && (
+                <div className="border border-[#D4AF37]/30 bg-[#D4AF37]/5 px-5 py-4">
+                  <p className="font-[var(--font-inter)] text-sm text-[#6C6863]">
+                    Thank you for reaching out. I&apos;ll get back to you as soon as possible.
+                  </p>
                 </div>
               )}
             </form>

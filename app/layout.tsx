@@ -1,21 +1,18 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Orbitron, Share_Tech_Mono } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
-const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-});
-
-const shareTechMono = Share_Tech_Mono({
-  variable: "--font-share-tech",
-  weight: "400",
-  subsets: ["latin"],
+  weight: ["300", "400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -38,9 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${orbitron.variable} ${jetBrainsMono.variable} ${shareTechMono.variable} antialiased`}
-      >
+      <body className={`${playfair.variable} ${inter.variable} antialiased`}>
         {children}
       </body>
     </html>

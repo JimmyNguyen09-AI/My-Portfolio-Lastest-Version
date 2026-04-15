@@ -1,34 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
-'use client';
+"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ArrowRight, BrainCircuit, GraduationCap, Layers3, TimerReset } from "lucide-react";
+import { ArrowRight, BrainCircuit, GraduationCap, TimerReset } from "lucide-react";
 
-type TabKey = 'skills' | 'experience' | 'education';
+type TabKey = "skills" | "experience" | "education";
 
 const skills = {
   "AI & Machine Learning": [
-    "Pydantic AI",
-    "PyTorch",
-    "LangChain",
-    "LangGraph",
-    "Scikit-Learn",
-    "GenAI",
-    "HuggingFace",
-    "OpenAI",
+    "Pydantic AI", "PyTorch", "LangChain", "LangGraph",
+    "Scikit-Learn", "GenAI", "HuggingFace", "OpenAI",
   ],
   Frontend: ["React.js", "Next.js", "TypeScript", "Tailwind CSS", "Streamlit", "HTML5", "CSS3"],
-  Backend: ["Node.js", "Python", "FastAPI", "Express","ASP .NET", "REST APIs"],
+  Backend: ["Node.js", "Python", "FastAPI", "Express", "ASP .NET", "REST APIs"],
   "Tools & Others": ["Git", "GitHub", "Docker", "AWS", "Vercel", "PostgreSQL", "Linux"],
 };
 
 const experience = [
   {
-    period: "01/08/2024 - Present",
+    period: "01/08/2024 — Present",
     role: "AI Agent Engineer",
-    company: "GRCG - Global Remote Consulting Group",
+    company: "GRCG — Global Remote Consulting Group",
     description:
       "Developing cutting-edge AI solutions and implementing machine learning models for production systems.",
   },
@@ -36,17 +30,23 @@ const experience = [
 
 const education = [
   {
-    period: "08/2022 - 08/2023",
+    period: "08/2022 — 08/2023",
     degree: "Bachelor of Automotive Technology",
-    institution: "HUST - Hanoi University of Science and Technology",
+    institution: "HUST — Hanoi University of Science and Technology",
     logo: "/hust.png",
   },
   {
-    period: "11/2023 - Present",
+    period: "11/2023 — Present",
     degree: "Bachelor of Information Technology",
     institution: "King's Own Institute",
     logo: "/koi.jpg",
   },
+];
+
+const tabs: { key: TabKey; label: string; icon: typeof BrainCircuit }[] = [
+  { key: "skills", label: "Skills", icon: BrainCircuit },
+  { key: "experience", label: "Experience", icon: TimerReset },
+  { key: "education", label: "Education", icon: GraduationCap },
 ];
 
 const row1Techs = [
@@ -87,117 +87,107 @@ const row2Techs = [
   { label: "Vercel", img: "https://assets.vercel.com/image/upload/front/favicon/vercel/57x57.png" },
 ];
 
-const tabs: { key: TabKey; label: string; icon: typeof BrainCircuit }[] = [
-  { key: 'skills', label: 'Skills', icon: BrainCircuit },
-  { key: 'experience', label: 'Experience', icon: TimerReset },
-  { key: 'education', label: 'Education', icon: GraduationCap },
-];
-
 export default function About() {
-  const [activeTab, setActiveTab] = useState<TabKey>('skills');
+  const [activeTab, setActiveTab] = useState<TabKey>("skills");
 
   const row1 = [...row1Techs, ...row1Techs];
   const row2 = [...row2Techs, ...row2Techs];
 
   return (
-    <section id="about" className="cyber-section overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 cyber-grid opacity-45"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_28%,rgb(255_0_255_/_0.12),transparent_26%),radial-gradient(circle_at_84%_66%,rgb(0_255_136_/_0.12),transparent_28%)]"
-      />
-
+    <section id="about" className="overflow-hidden bg-[#F9F8F6]">
+      {/* ── Main Content ─────────────────────────────────────────── */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
-        viewport={{ once: true, amount: 0.15 }}
-        className="cyber-shell relative z-10 space-y-14"
+        transition={{ duration: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
+        viewport={{ once: true, amount: 0.12 }}
+        className="cyber-shell relative z-10 py-24 space-y-20 lg:py-32"
       >
-        <div className="grid gap-10 xl:grid-cols-[0.88fr_1.12fr] xl:items-start">
-          <div className="space-y-8">
-            <div className="space-y-5">
-              <span className="cyber-kicker">
-                <Layers3 className="h-4 w-4" strokeWidth={1.5} />
+        <div className="grid gap-16 xl:grid-cols-[0.9fr_1.1fr] xl:items-start xl:gap-24">
+
+          {/* ── Left Column ─────────────────────────────────────── */}
+          <div className="space-y-10">
+            {/* Section label */}
+            <div className="flex items-center gap-4">
+              <span className="h-px w-8 bg-[#D4AF37]" />
+              <span className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.3em] text-[#6C6863]">
                 Profile Overview
               </span>
-              <div className="space-y-5">
-                <h2 className="cyber-heading text-[clamp(2.5rem,7vw,4.8rem)] text-white">
-                  About The
-                  <br />
-                  <span className="text-[var(--accent-tertiary)]">Operator</span>
-                </h2>
-                <p className="max-w-xl text-base leading-8 text-white/68 sm:text-lg">
-                  Passionate about building the future with AI. I translate research-heavy
-                  concepts into practical products with real users, real latency constraints and
-                  real business outcomes.
-                </p>
+            </div>
+
+            {/* Headline */}
+            <h2 className="font-[var(--font-playfair)] text-[clamp(2.8rem,6vw,4.5rem)] font-normal leading-[0.92] text-[#1A1A1A]">
+              About The
+              <br />
+              <em className="not-italic text-[#D4AF37]">Operator</em>
+            </h2>
+
+            {/* Bio with drop cap */}
+            <div className="space-y-5 text-[#6C6863]">
+              <p className="text-base leading-relaxed">
+                <span
+                  className="float-left mr-3 font-[var(--font-playfair)] text-[4.5rem] font-normal leading-[0.78] text-[#1A1A1A]"
+                  aria-hidden="true"
+                >
+                  I
+                </span>
+                &apos;m a dedicated AI Engineer and Full Stack Developer with a passion for
+                creating intelligent solutions that make a real-world impact. My journey in tech
+                has been driven by curiosity and a constant desire to learn and innovate.
+              </p>
+              <p className="text-base leading-relaxed">
+                Specializing in GenAI, Computer Vision, and modern web technologies, I bridge the
+                gap between cutting-edge AI research and practical, user-friendly applications.
+                Every project is an opportunity to push boundaries and deliver exceptional results.
+              </p>
+            </div>
+
+            {/* Portrait */}
+            <div className="group relative overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.08)]">
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <Image
+                  src="/avt1.jpg"
+                  alt="Jimmy Nguyen"
+                  fill
+                  sizes="(max-width: 1280px) 100vw, 480px"
+                  className="object-cover transition-transform duration-[1500ms] ease-out group-hover:scale-[1.04]"
+                />
+                <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.05)]" />
+
+                {/* Vertical editorial label */}
+                <span
+                  aria-hidden="true"
+                  className="absolute right-4 top-8 hidden font-[var(--font-inter)] text-[8px] uppercase tracking-[0.3em] text-[#F9F8F6]/60 xl:block"
+                  style={{ writingMode: "vertical-rl" }}
+                >
+                  AI Engineer / Portfolio
+                </span>
               </div>
             </div>
 
-            <div className="cyber-panel cyber-panel-hover p-4 sm:p-5">
-              <div className="grid gap-5 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,0.7fr)]">
-                <div className="cyber-cut relative aspect-[4/5] overflow-hidden border border-[rgba(0,212,255,0.18)]">
-                  <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,0,255,0.14),transparent_32%,rgba(0,255,136,0.18))]" />
-                  <Image
-                    src="/avt1.jpg"
-                    alt="Jimmy Nguyen"
-                    fill
-                    sizes="(max-width: 1280px) 100vw, 420px"
-                    className="object-cover"
-                  />
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-6">
+              {[
+                { number: "1+", label: "Years Experience" },
+                { number: "8+", label: "Projects Done" },
+                { number: "1", label: "Internship" },
+              ].map((stat) => (
+                <div key={stat.label} className="cyber-stat px-0 py-5">
+                  <p className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#6C6863]">
+                    {stat.label}
+                  </p>
+                  <p className="mt-2 font-[var(--font-playfair)] text-3xl text-[#D4AF37]">
+                    {stat.number}
+                  </p>
                 </div>
-
-                <div className="space-y-4">
-                  <div className="cyber-terminal">
-                    <div className="cyber-terminal-header">
-                      <div className="cyber-terminal-dots">
-                        <span />
-                        <span />
-                        <span />
-                      </div>
-                      <p className="cyber-label text-[10px] text-white/42">status://career.log</p>
-                    </div>
-                    <div className="space-y-3 px-4 py-4 text-sm text-white/70">
-                      <p>
-                        &gt; Dedicated AI Engineer and Full Stack Developer with a focus on
-                        intelligent systems.
-                      </p>
-                      <p>
-                        &gt; Bridging GenAI, Computer Vision and user-facing product engineering.
-                      </p>
-                      <p>
-                        &gt; Constantly learning, prototyping and shipping.
-                        <span className="blinking-cursor">_</span>
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
-                    {[
-                      { number: "1+", label: "Years Experience" },
-                      { number: "8+", label: "Projects Done" },
-                      { number: "1", label: "Completed Internship" },
-                    ].map((stat) => (
-                      <div key={stat.label} className="cyber-stat px-4 py-4">
-                        <p className="cyber-label text-[10px] text-white/42">{stat.label}</p>
-                        <p className="mt-2 text-2xl font-semibold text-[var(--accent)]">
-                          {stat.number}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
 
+            {/* CTAs */}
             <div className="flex flex-wrap gap-4">
               <a href="#contact" className="cyber-button">
-                Let&apos;s Work Together
-                <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+                <span>Let&apos;s Work Together</span>
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
               </a>
               <a
                 href="/AI ML Engineer - Jimmy Nguyen.pdf"
@@ -210,187 +200,193 @@ export default function About() {
             </div>
           </div>
 
-          <div className="cyber-terminal">
-            <div className="cyber-terminal-header">
-              <div className="cyber-terminal-dots">
-                <span />
-                <span />
-                <span />
-              </div>
-              <p className="cyber-label text-[10px] text-white/42">profile://jimmy/details</p>
+          {/* ── Right Column: Tabs ───────────────────────────────── */}
+          <div className="border border-[#1A1A1A]/10">
+            {/* Tab header */}
+            <div className="border-b border-[#1A1A1A]/10 px-6 py-5">
+              <p className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.28em] text-[#6C6863]">
+                profile://jimmy/details
+              </p>
             </div>
 
-            <div className="space-y-8 px-5 py-6 sm:px-7 sm:py-7">
-              <div className="space-y-4 text-sm leading-8 text-white/70 sm:text-base">
-                <p>
-                  I&apos;m a dedicated AI Engineer and Full Stack Developer with a passion for
-                  creating intelligent solutions that make a real-world impact. My journey in tech
-                  has been driven by curiosity and a constant desire to learn and innovate.
-                </p>
-                <p>
-                  Specializing in GenAI, Computer Vision, and modern web technologies, I bridge the
-                  gap between cutting-edge AI research and practical, user-friendly applications.
-                  Every project is an opportunity to push boundaries and deliver exceptional
-                  results.
-                </p>
-                <p>
-                  When I&apos;m not coding, you&apos;ll find me exploring the latest AI papers,
-                  contributing to open-source projects, or sharing knowledge with the developer
-                  community.
-                </p>
-              </div>
-
+            <div className="px-6 py-8 space-y-8 sm:px-8">
+              {/* Tab buttons */}
               <div className="flex flex-wrap gap-3">
                 {tabs.map((tab) => {
                   const Icon = tab.icon;
                   const isActive = activeTab === tab.key;
-
                   return (
                     <button
                       key={tab.key}
                       type="button"
                       onClick={() => setActiveTab(tab.key)}
-                      className={`cyber-tab flex min-h-[48px] items-center gap-2 border px-4 py-3 text-xs sm:text-sm ${
+                      className={`cyber-tab flex min-h-[44px] items-center gap-2 border px-5 py-2.5 text-[11px] ${
                         isActive
-                          ? "border-[rgba(0,255,136,0.42)] bg-[rgba(0,255,136,0.12)] text-[var(--accent)] shadow-[0_0_18px_rgba(0,255,136,0.12)]"
-                          : "border-[rgba(42,42,58,0.95)] bg-[rgba(18,18,26,0.8)] text-white/60 hover:border-[rgba(0,212,255,0.3)] hover:text-[var(--accent-tertiary)]"
+                          ? "border-[#D4AF37] bg-[#D4AF37]/8 text-[#1A1A1A]"
+                          : "border-[#1A1A1A]/15 text-[#6C6863] hover:border-[#1A1A1A]/30 hover:text-[#1A1A1A]"
                       }`}
                     >
-                      <Icon className="h-4 w-4" strokeWidth={1.5} />
+                      <Icon className="h-3.5 w-3.5" strokeWidth={1.5} />
                       {tab.label}
                     </button>
                   );
                 })}
               </div>
 
-              <div className="min-h-[20rem]">
-                {activeTab === 'skills' && (
-                  <div className="space-y-6">
+              {/* Tab Content */}
+              <div className="min-h-[22rem]">
+                {activeTab === "skills" && (
+                  <div className="lux-fade-in space-y-5">
                     {Object.entries(skills).map(([category, items]) => (
-                      <div key={category} className="cyber-panel p-5">
-                        <p className="cyber-label text-xs text-[var(--accent-tertiary)]">
+                      <div key={category} className="space-y-3">
+                        <p className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#6C6863]">
                           {category}
                         </p>
-                        <div className="mt-4 flex flex-wrap gap-3">
+                        <div className="flex flex-wrap gap-2">
                           {items.map((skill) => (
                             <span key={skill} className="cyber-chip">
                               {skill}
                             </span>
                           ))}
                         </div>
+                        <div className="h-px w-full bg-[#1A1A1A]/6" />
                       </div>
                     ))}
                   </div>
                 )}
 
-                {activeTab === 'experience' && (
-                  <div className="space-y-5">
+                {activeTab === "experience" && (
+                  <div className="lux-fade-in space-y-6">
                     {experience.map((exp) => (
-                      <div key={exp.role} className="cyber-panel p-5">
-                        <p className="cyber-label text-xs text-[var(--accent)]">{exp.period}</p>
-                        <h3 className="mt-3 text-xl text-white">{exp.role}</h3>
-                        <p className="mt-2 text-sm text-[var(--accent-tertiary)]">{exp.company}</p>
-                        <p className="mt-4 text-sm leading-7 text-white/70">{exp.description}</p>
+                      <div key={exp.role} className="space-y-3 border-t border-[#D4AF37] pt-5">
+                        <p className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#D4AF37]">
+                          {exp.period}
+                        </p>
+                        <h3 className="font-[var(--font-playfair)] text-xl text-[#1A1A1A]">
+                          {exp.role}
+                        </h3>
+                        <p className="font-[var(--font-inter)] text-sm text-[#6C6863]">
+                          {exp.company}
+                        </p>
+                        <p className="font-[var(--font-inter)] text-sm leading-7 text-[#6C6863]/80">
+                          {exp.description}
+                        </p>
                       </div>
                     ))}
                   </div>
                 )}
 
-                {activeTab === 'education' && (
-                  <div className="space-y-5">
+                {activeTab === "education" && (
+                  <div className="lux-fade-in space-y-5">
                     {education.map((edu) => (
                       <div
                         key={`${edu.period}-${edu.degree}`}
-                        className="cyber-panel flex flex-col gap-4 p-5 sm:flex-row sm:items-start"
+                        className="flex gap-5 border-t border-[#1A1A1A]/10 pt-5"
                       >
-                        <div className="cyber-cut-sm relative h-16 w-16 shrink-0 overflow-hidden border border-[rgba(0,212,255,0.2)] bg-white/5">
+                        <div className="relative h-14 w-14 shrink-0 overflow-hidden border border-[#1A1A1A]/10 bg-white">
                           <Image
                             src={edu.logo}
                             alt={edu.institution}
                             fill
-                            sizes="64px"
+                            sizes="56px"
                             className="object-cover"
                           />
                         </div>
-                        <div className="space-y-2">
-                          <p className="cyber-label text-xs text-[var(--accent-tertiary)]">
+                        <div className="space-y-1.5">
+                          <p className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#6C6863]">
                             {edu.period}
                           </p>
-                          <h3 className="text-lg leading-7 text-white">{edu.degree}</h3>
-                          <p className="text-sm text-white/70">{edu.institution}</p>
+                          <h3 className="font-[var(--font-playfair)] text-lg leading-snug text-[#1A1A1A]">
+                            {edu.degree}
+                          </h3>
+                          <p className="font-[var(--font-inter)] text-sm text-[#6C6863]">
+                            {edu.institution}
+                          </p>
                         </div>
                       </div>
                     ))}
                   </div>
                 )}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative -mt-2 overflow-hidden sm:-mt-6">
-          <div className="cyber-terminal py-6">
-            <div className="absolute inset-y-0 left-0 z-10 w-20 bg-[linear-gradient(90deg,var(--background),transparent)]" />
-            <div className="absolute inset-y-0 right-0 z-10 w-20 bg-[linear-gradient(270deg,var(--background),transparent)]" />
-
-            <div className="mb-4 px-5 sm:px-7">
-              <p className="cyber-label text-xs text-white/42">stack://running-services</p>
-            </div>
-
-            <div className="flex overflow-hidden">
-              <div className="animate-marquee-ltr flex gap-3 whitespace-nowrap px-5 sm:px-7">
-                {row1.map((tech, index) => (
-                  <div
-                    key={`${tech.label}-${index}`}
-                    className="cyber-cut-sm inline-flex items-center gap-3 border border-[rgba(42,42,58,0.95)] bg-[rgba(18,18,26,0.78)] px-4 py-3 text-sm text-white/70"
-                  >
-                    <div className="flex h-6 w-6 items-center justify-center">
-                      <img
-                        src={tech.img}
-                        alt={tech.label}
-                        className="h-5 w-5 object-contain"
-                        style={{
-                          filter:
-                            tech.label === "Next.js" || tech.label === "Express" || tech.label === "OpenAI"
-                              ? "invert(1)"
-                              : "none",
-                        }}
-                      />
-                    </div>
-                    <span className="cyber-label text-[10px] text-white/70">{tech.label}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-4 flex overflow-hidden">
-              <div className="animate-marquee-rtl flex gap-3 whitespace-nowrap px-5 sm:px-7">
-                {row2.map((tech, index) => (
-                  <div
-                    key={`${tech.label}-${index}`}
-                    className="cyber-cut-sm inline-flex items-center gap-3 border border-[rgba(42,42,58,0.95)] bg-[rgba(18,18,26,0.78)] px-4 py-3 text-sm text-white/70"
-                  >
-                    <div className="flex h-6 w-6 items-center justify-center">
-                      <img
-                        src={tech.img}
-                        alt={tech.label}
-                        className="h-5 w-5 object-contain"
-                        style={{
-                          filter:
-                            tech.label === "GitHub" || tech.label === "AWS" || tech.label === "Pydantic"
-                              ? "invert(1)"
-                              : "none",
-                        }}
-                      />
-                    </div>
-                    <span className="cyber-label text-[10px] text-white/70">{tech.label}</span>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
         </div>
       </motion.div>
+
+      {/* ── Tech Marquee Strip (dark band) ─────────────────────── */}
+      <div className="relative overflow-hidden bg-[#1A1A1A] py-7">
+        {/* Fade edges */}
+        <div className="absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-[#1A1A1A] to-transparent" />
+        <div className="absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-[#1A1A1A] to-transparent" />
+
+        <div className="mb-5 px-8">
+          <p className="font-[var(--font-inter)] text-[8px] uppercase tracking-[0.3em] text-white/40">
+            Technology Stack
+          </p>
+        </div>
+
+        {/* Row 1 — LTR */}
+        <div className="flex overflow-hidden">
+          <div className="animate-marquee-ltr flex gap-3 whitespace-nowrap px-8">
+            {row1.map((tech, index) => (
+              <div
+                key={`r1-${tech.label}-${index}`}
+                className="inline-flex items-center gap-3 border border-white/10 bg-white/[0.04] px-5 py-3"
+              >
+                <div className="flex h-5 w-5 items-center justify-center shrink-0">
+                  <img
+                    src={tech.img}
+                    alt={tech.label}
+                    className="h-4 w-4 object-contain"
+                    style={{
+                      filter:
+                        tech.label === "Next.js" ||
+                        tech.label === "Express" ||
+                        tech.label === "OpenAI"
+                          ? "invert(1)"
+                          : "none",
+                    }}
+                  />
+                </div>
+                <span className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.18em] text-white/65">
+                  {tech.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2 — RTL */}
+        <div className="mt-3 flex overflow-hidden">
+          <div className="animate-marquee-rtl flex gap-3 whitespace-nowrap px-8">
+            {row2.map((tech, index) => (
+              <div
+                key={`r2-${tech.label}-${index}`}
+                className="inline-flex items-center gap-3 border border-white/10 bg-white/[0.04] px-5 py-3"
+              >
+                <div className="flex h-5 w-5 items-center justify-center shrink-0">
+                  <img
+                    src={tech.img}
+                    alt={tech.label}
+                    className="h-4 w-4 object-contain"
+                    style={{
+                      filter:
+                        tech.label === "GitHub" ||
+                        tech.label === "AWS" ||
+                        tech.label === "Pydantic"
+                          ? "invert(1)"
+                          : "none",
+                    }}
+                  />
+                </div>
+                <span className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.18em] text-white/65">
+                  {tech.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
