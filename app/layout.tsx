@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
+const faviconVersion = "20260720";
+
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
@@ -34,12 +36,11 @@ export const metadata: Metadata = {
   creator: "Jimmy Nguyen",
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png" },
-      { url: "/favicon.png", sizes: "32x32", type: "image/png" },
-      { url: "/favicon.png", sizes: "16x16", type: "image/png" },
+      { url: `/icon.png?v=${faviconVersion}`, sizes: "1024x1024", type: "image/png" },
+      { url: `/favicon.ico?v=${faviconVersion}`, type: "image/x-icon" },
     ],
-    apple: [{ url: "/favicon.png", sizes: "180x180", type: "image/png" }],
-    shortcut: "/favicon.png",
+    apple: [{ url: `/apple-icon.png?v=${faviconVersion}`, sizes: "1024x1024", type: "image/png" }],
+    shortcut: `/favicon.ico?v=${faviconVersion}`,
   },
   openGraph: {
     type: "website",
@@ -74,9 +75,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <link rel="icon" href="/favicon.png" sizes="32x32" type="image/png" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="icon" href={`/icon.png?v=${faviconVersion}`} sizes="any" type="image/png" />
+        <link rel="shortcut icon" href={`/favicon.ico?v=${faviconVersion}`} />
+        <link rel="apple-touch-icon" href={`/apple-icon.png?v=${faviconVersion}`} />
       </head>
       <body className={`${playfair.variable} ${inter.variable} antialiased`}>
         {children}

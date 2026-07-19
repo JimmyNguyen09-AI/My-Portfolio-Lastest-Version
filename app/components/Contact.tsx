@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
+import AmbientMotion from "./AmbientMotion";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -58,7 +59,9 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="overflow-hidden bg-[#F9F8F6]">
+    <section id="contact" className="relative overflow-hidden bg-[#F9F8F6]">
+      <AmbientMotion tone="light" density="calm" />
+
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}

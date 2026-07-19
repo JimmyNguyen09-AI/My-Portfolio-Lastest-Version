@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import AmbientMotion from "./AmbientMotion";
 
 const categories = ["All", "Computer Vision", "GenAI & FullStack"];
 
@@ -115,7 +116,9 @@ export default function Projects() {
       : projects.filter((p) => p.category === activeCategory);
 
   return (
-    <section id="projects" className="overflow-hidden bg-[#1A1A1A]">
+    <section id="projects" className="relative overflow-hidden bg-[#1A1A1A]">
+      <AmbientMotion tone="dark" density="rich" />
+
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
