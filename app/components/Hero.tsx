@@ -9,7 +9,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { Download, MapPin, Sparkles } from "lucide-react";
+import { Download, MapPin } from "lucide-react";
 import { useRef, type MouseEvent } from "react";
 import AmbientMotion from "./AmbientMotion";
 import TypingTitle from "./_components/Typing";
@@ -31,12 +31,6 @@ const words = [
   "AI Engineer",
   "Full Stack Engineer",
   "Computer Vision Engineer",
-];
-
-const floatingSignals = [
-  { label: "Realtime AI", value: "Agents, RAG, streaming", className: "-left-5 top-8 xl:-left-32" },
-  { label: "Shipping Mode", value: "From idea to production", className: "-right-5 top-24 xl:-right-32" },
-  { label: "Design Feel", value: "Editorial x cinematic", className: "-bottom-2 left-4 xl:-left-24" },
 ];
 
 export default function Hero() {
@@ -146,41 +140,18 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_220px]">
-            <p className="max-w-xl font-[var(--font-inter)] text-[1rem] leading-relaxed text-[#6C6863]">
-              Crafting intelligent systems where GenAI, computer vision, and polished product
-              design come together. I build experiences that feel futuristic, but land with
-              clarity, trust, and business value.
-            </p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35, duration: 0.9 }}
-              className="lux-glass-card relative overflow-hidden p-5"
-            >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent" />
-              <p className="font-[var(--font-inter)] text-[9px] uppercase tracking-[0.25em] text-[#6C6863]">
-                Current Focus
-              </p>
-              <p className="mt-3 font-[var(--font-playfair)] text-2xl leading-tight text-[#1A1A1A]">
-                AI products with premium UX.
-              </p>
-              <div className="mt-4 inline-flex items-center gap-2 text-[#6C6863]">
-                <Sparkles className="h-3.5 w-3.5 text-[#D4AF37]" strokeWidth={1.6} />
-                <span className="font-[var(--font-inter)] text-[11px]">
-                  Motion, systems thinking, and production-first delivery.
-                </span>
-              </div>
-            </motion.div>
-          </div>
+          <p className="max-w-xl font-[var(--font-inter)] text-[1rem] leading-relaxed text-[#6C6863]">
+            Crafting intelligent systems where GenAI, computer vision, and polished product design
+            come together. I build experiences that feel futuristic, but land with clarity, trust,
+            and business value.
+          </p>
 
           <div className="flex flex-wrap gap-4">
             <a href="#contact" className="cyber-button">
               <span>Get In Touch</span>
             </a>
             <a
-              href="/AI ML Engineer - Jimmy Nguyen.pdf"
+              href="/CV.pdf"
               target="_blank"
               rel="noreferrer"
               className="cyber-button-secondary inline-flex items-center gap-2"
@@ -254,26 +225,6 @@ export default function Hero() {
             <div className="absolute inset-[8%] rounded-[34px] border border-[#1A1A1A]/10" />
           </motion.div>
 
-          {floatingSignals.map((signal, index) => (
-            <motion.div
-              key={signal.label}
-              animate={{ y: [0, -10, 0] }}
-              transition={{
-                duration: 5 + index,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-              className={`lux-floating-signal lux-glass-card absolute z-30 hidden max-w-[13rem] px-4 py-3 xl:block ${signal.className}`}
-            >
-              <p className="font-[var(--font-inter)] text-[8px] uppercase tracking-[0.24em] text-[#6C6863]">
-                {signal.label}
-              </p>
-              <p className="mt-2 font-[var(--font-inter)] text-sm leading-5 text-[#1A1A1A]">
-                {signal.value}
-              </p>
-            </motion.div>
-          ))}
-
           <motion.div
             ref={cardRef}
             style={{ y: portraitY, rotateX: smoothRotateX, rotateY: smoothRotateY }}
@@ -300,33 +251,6 @@ export default function Hero() {
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/70 via-transparent to-white/10" />
                 <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.22)]" />
 
-                <div className="absolute bottom-6 left-6 right-6 flex flex-wrap items-end justify-between gap-4">
-                  <div className="max-w-[17rem] rounded-[1.2rem] border border-white/15 bg-black/20 px-5 py-4 backdrop-blur-md">
-                    <p className="font-[var(--font-inter)] text-[8px] uppercase tracking-[0.28em] text-[#F9F8F6]/55">
-                      Primary Role
-                    </p>
-                    <p className="mt-2 font-[var(--font-inter)] text-sm leading-6 text-[#F9F8F6]/88">
-                      Building intelligent products with GenAI, CV, and modern web systems.
-                    </p>
-                  </div>
-
-                  <motion.div
-                    animate={{ y: [0, -8, 0] }}
-                    transition={{
-                      duration: 5.2,
-                      repeat: Number.POSITIVE_INFINITY,
-                      ease: "easeInOut",
-                    }}
-                    className="rounded-[1.1rem] border border-white/15 bg-white/12 px-4 py-3 text-right backdrop-blur-md"
-                  >
-                    <p className="font-[var(--font-inter)] text-[8px] uppercase tracking-[0.24em] text-white/55">
-                      Signature
-                    </p>
-                    <p className="mt-1 font-[var(--font-playfair)] text-xl text-white">
-                      Human + AI
-                    </p>
-                  </motion.div>
-                </div>
               </div>
             </div>
           </motion.div>

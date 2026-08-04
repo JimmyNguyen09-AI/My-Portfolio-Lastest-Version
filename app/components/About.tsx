@@ -239,15 +239,6 @@ export default function About() {
                 onMouseLeave={resetPointer}
                 className="lux-tilt-card group relative"
               >
-                <div className="absolute -right-4 top-6 z-10 hidden rounded-[1.2rem] border border-[#1A1A1A]/10 bg-white/85 px-4 py-3 shadow-[0_18px_40px_rgba(26,26,26,0.08)] backdrop-blur-md md:block">
-                  <p className="font-[var(--font-inter)] text-[8px] uppercase tracking-[0.24em] text-[#6C6863]">
-                    Creative Stack
-                  </p>
-                  <p className="mt-2 font-[var(--font-playfair)] text-xl text-[#1A1A1A]">
-                    Motion + Depth
-                  </p>
-                </div>
-
                 <div className="group relative overflow-hidden rounded-[2rem] border border-[#1A1A1A]/10 bg-[#EDE8E0] shadow-[0_22px_60px_rgba(26,26,26,0.1)]">
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
@@ -259,24 +250,6 @@ export default function About() {
                     />
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1A1A1A]/45 via-transparent to-white/15" />
                     <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.16)]" />
-
-                    <span
-                      aria-hidden="true"
-                      className="absolute right-5 top-8 hidden font-[var(--font-inter)] text-[8px] uppercase tracking-[0.3em] text-[#F9F8F6]/60 xl:block"
-                      style={{ writingMode: "vertical-rl" }}
-                    >
-                      AI Engineer / Portfolio
-                    </span>
-
-                    <div className="absolute bottom-5 left-5 right-5 rounded-[1.2rem] border border-white/15 bg-black/20 px-5 py-4 backdrop-blur-md">
-                      <p className="font-[var(--font-inter)] text-[8px] uppercase tracking-[0.26em] text-white/55">
-                        Personal Note
-                      </p>
-                      <p className="mt-2 font-[var(--font-inter)] text-sm leading-6 text-white/85">
-                        I enjoy turning complex AI workflows into experiences people actually want
-                        to use.
-                      </p>
-                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -309,7 +282,7 @@ export default function About() {
                 <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
               </a>
               <a
-                href="/AI ML Engineer - Jimmy Nguyen.pdf"
+                href="/CV.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="cyber-button-secondary"
