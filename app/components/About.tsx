@@ -40,6 +40,13 @@ const experience = [
     description:
       "Developing and optimizing AI-powered applications and LLM platforms with a strong product mindset.",
   },
+  {
+    period: "08/2025 — Present",
+    role: "Online Programming & AI Instructor",
+    company: "JN - Labs",
+    description:
+      "Delivered online programming lessons to Vietnamese students, covering programming fundamentals, problem-solving, basic algorithms, and project-based coding practice",
+  },
 ];
 
 const education = [
